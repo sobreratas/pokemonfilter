@@ -96,12 +96,12 @@
         const btnContainer = document.querySelector('.btn_container');
 
         window.addEventListener('DOMContentLoaded', function () {
-            displayPokemonMenu();
+            displayPokemonMenu(pokemon);
             displayMenuButtons();
         })
 
         function displayPokemonMenu(array) {
-            let pokemonMap = pokemon.map(function (item) {
+            let pokemonMap = array.map(function (item) {
                 return `<div class="pokemon-item">
             <img class="photo" src="${item.image}" alt="${item.name}">
             <h2>${item.name}</h2>
