@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(images/background.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Nanum Gothic;
+    color: #fff;
+}
+
+.filter-btn {
+    font-family: Nanum Gothic;
+    padding: 10px 15px;
+    background: none;
+    border-radius: 10px;
+    color: #fff;
+    border: solid 1px #fff;
+    transition: .2s linear;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.section-center {
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.pokemon-item {
+    width: 300px;
+    margin: 15px 15px;
+}
+
+.photo {
+    width: 150px;
+    height: 150px;
+}
+
+.logo {
+    width: 300px;
+}

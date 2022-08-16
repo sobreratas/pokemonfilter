@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <img class="logo" src="images/logo.png" alt="logo">
+    <br>
+    <br>
+    <div class="btn_container">
+        <button class="filter-btn" data-id="All">All</button>
+    </div>
+    <div class="section-center">
+        <div class="pokemon-item">
+            <img class="photo" src="images/bulbasaur.png" alt="Bulbasaur">
+            <h2>Bulbasaur</h2>
+            <h3># <span id="number">1</span></h3>
+            <h4>Type: <span id="type">Grass</span></h4>
+        </div>
+    </div>
+
+    <script>
+        const pokemon = [
+            {
+                name: 'Bulbasaur',
+                image: 'images/bulbasaur.png',
+                number: 1,
+                type: 'Grass'
+            },
+
+            {
+                name: 'Ivysaur',
+                image: 'images/ivysaur.png',
+                number: 2,
+                type: 'Grass'
+            },
+
+            {
+                name: 'Venusaur',
+                image: 'images/venusaur.png',
+                number: 3,
+                type: 'Grass'
+            },
+
+            {
+                name: 'Charmander',
+                image: 'images/charmander.png',
+                number: 4,
+                type: 'Fire'
+            },
+
+            {
+                name: 'Charmeleon',
+                image: 'images/charmeleon.png',
+                number: 5,
+                type: 'Fire'
+            },
+
+            {
+                name: 'Charizard',
+                image: 'images/charizard.png',
+                number: 6,
+                type: 'Fire'
+            },
+
+            {
+                name: 'Squirtle',
+                image: 'images/squirtle.png',
+                number: 7,
+                type: 'Water'
+            },
+
+            {
+                name: 'Wartortle',
+                image: 'images/wartortle.png',
+                number: 8,
+                type: 'Water'
+            },
+
+            {
+                name: 'Blastoise',
+                image: 'images/blastoise.png',
+                number: 9,
+                type: 'Water'
+            }
+
+        ]
+
+        const sectionCenter = document.querySelector('.section-center');
+        const btnContainer = document.querySelector('.btn_container');
+
+        window.addEventListener('DOMContentLoaded', function () {
+            displayPokemonMenu();
+            displayMenuButtons();
+        })
+
+        function displayPokemonMenu(array) {
+            let pokemonMap = pokemon.map(function (item) {
+                return `<div class="pokemon-item">
+            <img class="photo" src="${item.image}" alt="${item.name}">
+            <h2>${item.name}</h2>
+            <h3># <span id="number">${item.number}</span></h3>
+            <h4>Type: <span id="type">${item.type}</span></h4>
+        </div>`
+            })
+            pokemonMap = pokemonMap.join('');
+            sectionCenter.innerHTML = pokemonMap;
+        }
+
+
+        function displayMenuButtons() {
+            let types = pokemon.reduce(function (values, item) {
+                if (!values.includes(item.type)) {
+                    values.push(item.type);
+                }
+                return values
+            },
+                ['All']
+            );
+
+            const typesBtns = types.map(function (type) {
+                return `<button class="filter-btn" data-id="${type}">${type}</button>`
+            }).join('');
+
+            btnContainer.innerHTML = typesBtns;
+
+            const filterBtns = btnContainer.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    let type = e.currentTarget.dataset.id;
+                    console.log(type)
+                    const pokemonFilter = pokemon.filter(function (item) {
+                        if (type === item.type) {
+                            return item;
+                        }
+                    })
+                    if (type === 'All'){
+                        displayPokemonMenu(pokemon);
+                    } else {
+                        displayPokemonMenu(pokemonFilter);
+                        console.log(pokemonFilter);
+                    }
+                })
+            })
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
